@@ -3,7 +3,7 @@ terraform {
     mongodbatlas = {
       source = "mongodb/mongodbatlas"
       public_key = var.mongodbatlas_public_key
-      private_key  = var.mongodbatlas_private_key
+      private_key  = var.mongodbatlas_private_key #TODO: onde vai isso?
     }
   }
   required_version = ">= 0.13"
