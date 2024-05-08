@@ -12,7 +12,7 @@ env:
   TF_LOG: "INFO" # "DEBUG"
 
 jobs:
-  deploy_terraform_aws:
+  deploy_terraform_atlas:
     name: deploy_terraform
     runs-on: ubuntu-latest
     steps:
