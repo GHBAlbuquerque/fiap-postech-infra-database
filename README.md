@@ -5,7 +5,7 @@ Projeto realizado para a Fase 3 da Pós-Graduação de Arquitetura de Sistemas d
 
 **🚨 OBSERVAÇÃO 🚨**
 
-Apesar de cofigurado o repositório, o banco de dados utilizado na execução do projeto **não foi o criado na nuvem da Atlas** e sim o banco de dados da entrega anterior, criado em um pod do eks.
+Apesar de cofigurado o repositório, o banco de dados utilizado na execução do projeto **não foi o criado na nuvem da Atlas**, mas sim o banco de dados da entrega anterior, criado em um pod do EKS no **Repositório da App** informado mais abaixo.
 
 A utilização deste banco demandaria a utilização de Private Endpoint (configurados, mas comentados, no arquivo atlas-pl.tf) e necessitaria de pagamento pelo uso. Optou-se por configurar, mas não utilizar a tecnologia, evitando gastos.
 
