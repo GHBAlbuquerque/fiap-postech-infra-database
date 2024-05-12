@@ -13,7 +13,7 @@ resource "mongodbatlas_project_ip_access_list" "ip" {
 
 resource "mongodbatlas_cluster" "atlas_cluster" {
   project_id = mongodbatlas_project.atlas_project.id
-  name       = "${var.atlas_project_name}-${var.environment}-cluster"
+  name       = var.mongo_database_name
 
   mongo_db_major_version      = var.mongodb_version
   # Provider settings block
@@ -22,7 +22,7 @@ resource "mongodbatlas_cluster" "atlas_cluster" {
   provider_region_name        = var.atlas_region
   provider_instance_size_name = var.atlas_cluster_size_name
 
-  termination_protection_enabled = true
+  termination_protection_enabled = false
 
   lifecycle {
     prevent_destroy = true

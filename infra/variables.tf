@@ -108,7 +108,6 @@ variable "mongo_database_name" {
 }
 
 
-
 # vpc
 
 variable "vpc_id" {
