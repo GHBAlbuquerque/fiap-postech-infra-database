@@ -21,15 +21,4 @@ resource "mongodbatlas_database_user" "application" {
     role_name     = "readWrite"
     database_name = var.mongo_database_name
   }
-
-  # mongodbatlas_database_user resource type includes repeatable nested blocks of roles,
-  # which represent separate objects that are embedded within the containing object.
-  # We want to construct repeatable nested blocks while keeping them embedded within
-  # a single resource. One user, but multiple roles assigned to it.
-
-  content {
-    role_name     = "readWrite"
-    database_name = var.mongo_database_name
-  }
-
 }
