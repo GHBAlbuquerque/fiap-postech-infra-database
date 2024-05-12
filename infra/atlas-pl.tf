@@ -1,4 +1,4 @@
-resource "mongodbatlas_privatelink_endpoint" "atlaspl" {
+/*resource "mongodbatlas_privatelink_endpoint" "atlaspl" {
   project_id    = mongodbatlas_project.atlas_project.id
   provider_name = "AWS"
   region        = var.aws_region
@@ -17,4 +17,4 @@ resource "mongodbatlas_privatelink_endpoint_service" "atlaseplink" {
   endpoint_service_id = aws_vpc_endpoint.ptfe_service.id
   private_link_id     = mongodbatlas_privatelink_endpoint.atlaspl.id
   provider_name       = "AWS"
-}
+}*/
