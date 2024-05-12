@@ -117,9 +117,6 @@ Passo-a-passo:
 Ex. de chamada:
 ![](misc/chamada_gateway_exemplo.png)
 
-(opcional)
-
-
 
 ## Referências
 
