@@ -35,11 +35,11 @@ resource "mongodbatlas_cluster" "atlas_cluster" {
   project_id = mongodbatlas_project.atlas-project.id
   name       = "${var.atlas_project_name}-${var.environment}-cluster"
 
-  mongo_db_major_version      = var.atlas_cluster_version
+  mongo_db_major_version      = var.mongodb_version
   # Provider settings block
   provider_name               = var.atlas_cluster_provider_name
-  backing_provider_name       = var.atlas_cluster_backing_provider
-  provider_region_name        = var.atlas_cluster_region
+  backing_provider_name       = var.cloud_provider
+  provider_region_name        = var.atlas_region
   provider_instance_size_name = var.atlas_cluster_size_name
 
   termination_protection_enabled = true

@@ -15,6 +15,10 @@ variable "environment" {
   description = "The environment to be built"
 }
 
+#
+# Mongo Atlas shared cluster parameters
+#
+
 # Cluster Instance Size Name
 variable "cluster_instance_size_name" {
   type        = string
@@ -51,6 +55,28 @@ variable "aws_region" {
   description = "AWS Region"
 }
 
+variable "atlas_cluster_provider_name" {
+  description = "Cloud provider for this resource"
+  type        = string
+  default     = "TENANT"
+}
+
+# See https://www.mongodb.com/docs/atlas/reference/amazon-aws/
+variable "atlas_cluster_size_name" {
+  description = "Type of the MongoDB cluster to deploy"
+  type        = string
+  default     = "M0"
+}
+
+variable "atlas_cluster_allow_inbound_from_cidr" {
+  description = "CIDR block to allow inbound traffic to the cluster (change to your IP)"
+  type        = string
+  default     = "0.0.0.0/0"
+}
+
+
+# vpc
+
 variable "vpc_id" {
   default = "vpc-0c33afcdadaa4be7b"
 }
@@ -81,51 +107,4 @@ variable "subnet_id_e" {
 
 variable "default_sg_id" {
   default = "sg-0e381eb84dad9dfd3"
-}
-
-#
-# Mongo Atlas shared cluster parameters
-#
-
-variable "atlas_cluster_provider_name" {
-  description = "Cloud provider for this resource"
-  type        = string
-  default     = "TENANT"
-}
-
-variable "atlas_cluster_backing_provider" {
-  description = "Cloud provider for this resource"
-  type        = string
-  default     = "AWS"
-}
-
-# See https://www.mongodb.com/docs/atlas/reference/amazon-aws/
-variable "atlas_cluster_region" {
-  description = "Mongo Atlas region name (physical location of your MongoDB cluster)"
-  type        = string
-  default     = "EU_WEST_1"
-}
-
-variable "atlas_cluster_version" {
-  description = "Version of the MongoDB cluster to deploy"
-  type        = string
-  default     = "5.0"
-}
-
-variable "atlas_cluster_size_name" {
-  description = "Type of the MongoDB cluster to deploy"
-  type        = string
-  default     = "M0"
-}
-
-variable "atlas_cluster_cidr" {
-  description = "Atlas CIDR block, must be at least a /24 and at most a /21"
-  type        = string
-  default     = "192.168.248.0/24"
-}
-
-variable "atlas_cluster_allow_inbound_from_cidr" {
-  description = "CIDR block to allow inbound traffic to the cluster (change to your IP)"
-  type        = string
-  default     = "0.0.0.0/0"
 }
