@@ -1,5 +1,5 @@
 atlas_org_id = "5f0f5bfd5e2f632be81ed628"
-atlas_project_name = "fiapMongoAtlas"
+atlas_project_name = "FIAPPosTech"
 environment = "dev"
 cluster_instance_size_name = "M10"
 cloud_provider = "AWS"
