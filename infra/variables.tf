@@ -74,6 +74,40 @@ variable "atlas_cluster_allow_inbound_from_cidr" {
   default     = "0.0.0.0/0"
 }
 
+# user
+
+variable "mongo_database_admin_user" {
+  description = "Mongo database admin username"
+  type        = string
+  default     = "admin"
+}
+
+variable "mongo_database_admin_password" {
+  description = "Mongo database admin password"
+  type        = string
+}
+
+variable "mongo_database_app_user" {
+  description = "Mongo database app username"
+  type        = string
+  default     = "admin"
+}
+
+variable "mongo_database_app_password" {
+  description = "Mongo database app password"
+  type        = string
+}
+
+
+# database
+
+variable "mongo_database_name" {
+  description = "Mongo database name"
+  type        = string
+  default     = "db-fiap-fastfood"
+}
+
+
 
 # vpc
 

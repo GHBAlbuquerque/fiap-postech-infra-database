@@ -1,38 +1,18 @@
 # Create a Project
-resource "mongodbatlas_project" "atlas-project" {
+resource "mongodbatlas_project" "atlas_project" {
   org_id = var.atlas_org_id
   name   = var.atlas_project_name
 }
 
-
-
-# Create a Database User
-resource "mongodbatlas_database_user" "db-user" {
-  username           = "user-1"
-  password           = random_password.db-user-password.result
-  project_id         = mongodbatlas_project.atlas-project.id
-  auth_database_name = "admin"
-  roles {
-    role_name     = "readWrite"
-    database_name = "${var.atlas_project_name}-db"
-  }
-}
-
-# Create a Database Password
-resource "random_password" "db-user-password" {
-  length           = 16
-  special          = true
-  override_special = "_%@"
-}
-
-# Create Database IP Access List
+# The access list grants access from IPs or CIDRs to clusters within the project.
 resource "mongodbatlas_project_ip_access_list" "ip" {
-  project_id = mongodbatlas_project.atlas-project.id
-  ip_address = var.ip_address
+  project_id = mongodbatlas_project.atlas_project.id
+  cidr_block = var.atlas_cluster_allow_inbound_from_cidr
+  comment    = "Terraform managed CIDR block to allow ingress to the cluster"
 }
 
 resource "mongodbatlas_cluster" "atlas_cluster" {
-  project_id = mongodbatlas_project.atlas-project.id
+  project_id = mongodbatlas_project.atlas_project.id
   name       = "${var.atlas_project_name}-${var.environment}-cluster"
 
   mongo_db_major_version      = var.mongodb_version
@@ -47,51 +27,19 @@ resource "mongodbatlas_cluster" "atlas_cluster" {
   lifecycle {
     prevent_destroy = true
   }
-
-
 }
-
-# Create an Atlas Advanced Cluster
-/*resource "mongodbatlas_cluster" "atlas-cluster" {
-  project_id             = mongodbatlas_project.atlas-project.id
-  name                   = "${var.atlas_project_name}-${var.environment}-cluster"
-  cluster_type           = "REPLICASET"
-  backup_enabled         = true
-  mongo_db_major_version = var.mongodb_version
-  replication_specs {
-    region_configs {
-      electable_specs {
-        instance_size = var.cluster_instance_size_name
-        node_count    = 3
-      }
-      analytics_specs {
-        instance_size = var.cluster_instance_size_name
-        node_count    = 1
-      }
-      priority      = 7
-      provider_name = var.cloud_provider
-      region_name   = var.atlas_region
-    }
-  }
-}
-
-data "mongodbatlas_advanced_cluster" "atlas-cluster" {
-  project_id = mongodbatlas_project.atlas-project.id
-  name       = mongodbatlas_advanced_cluster.atlas-cluster.name
-  depends_on = [mongodbatlas_privatelink_endpoint_service.atlaseplink]
-}*/
 
 # Outputs to Display
-output "atlas_cluster_connection_string" {
-  value = mongodbatlas_cluster.atlas_cluster.connection_strings.0.standard_srv
+output "cluster_srv_address" {
+  value       = mongodbatlas_cluster.atlas_cluster.srv_address
+  description = "Cluster srv address created"
 }
-output "ip_access_list" { value = mongodbatlas_project_ip_access_list.ip.ip_address }
-output "project_name" { value = mongodbatlas_project.atlas-project.name }
-output "username" { value = mongodbatlas_database_user.db-user.username }
-output "user_password" {
-  sensitive = true
-  value     = mongodbatlas_database_user.db-user.password
+
+output "mongo_database_version" {
+  value       = mongodbatlas_cluster.atlas_cluster.mongo_db_version
+  description = "Database version"
 }
-#output "privatelink_connection_string" {
-#  value = lookup(mongodbatlas_advanced_cluster.atlas-cluster.connection_strings[0].aws_private_link_srv, aws_vpc_endpoint.ptfe_service.id)
-#}
+
+locals {
+  mongodb_server_without_uri = replace(mongodbatlas_cluster.atlas_cluster.srv_address, "mongodb+srv://", "")
+}

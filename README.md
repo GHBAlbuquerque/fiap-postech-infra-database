@@ -97,3 +97,9 @@ Passo-a-passo:
 Ex. de chamada:
 ![](misc/chamada_gateway_exemplo.png)
 
+## Referências
+
+[Tutorial Mongo Atlas](https://www.mongodb.com/developer/products/atlas/deploy-mongodb-atlas-terraform-aws/)
+
+[Repositório de referência para cluster free-tier](https://github.com/lisenet/mongodb-atlas-terraform)
+
