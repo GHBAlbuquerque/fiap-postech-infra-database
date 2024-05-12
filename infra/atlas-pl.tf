@@ -5,11 +5,11 @@ resource "mongodbatlas_privatelink_endpoint" "atlaspl" {
 }
 
 resource "aws_vpc_endpoint" "ptfe_service" {
-  vpc_id             = aws_vpc.primary.id
+  vpc_id             = var.vpc_id
   service_name       = mongodbatlas_privatelink_endpoint.atlaspl.endpoint_service_name
   vpc_endpoint_type  = "Interface"
-  subnet_ids         = [aws_subnet.primary-az1.id, aws_subnet.primary-az2.id]
-  security_group_ids = [aws_security_group.primary_default.id]
+  subnet_ids         = [var.subnet_id_a, var.subnet_id_b, var.subnet_id_c]
+  security_group_ids = [var.default_sg_id]
 }
 
 resource "mongodbatlas_privatelink_endpoint_service" "atlaseplink" {

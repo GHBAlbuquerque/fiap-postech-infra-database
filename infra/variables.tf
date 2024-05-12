@@ -50,3 +50,35 @@ variable "aws_region" {
   type = string
   description = "AWS Region"
 }
+
+variable "vpc_id" {
+  default = "vpc-0c33afcdadaa4be7b"
+}
+
+variable "vpc_cidr_block" {
+  default = "172.31.0.0/16"
+}
+
+variable "subnet_id_a" {
+  default = "subnet-092106de434121bca"
+}
+
+variable "subnet_id_b" {
+  default = "subnet-021d5fd5534bb9fbd"
+}
+
+variable "subnet_id_c" {
+  default = "subnet-05685364d9e045913"
+}
+
+variable "subnet_id_d" {
+  default = "subnet-066ce0c3304da4788"
+}
+
+variable "subnet_id_e" {
+  default = "subnet-0bdae3752039a482f"
+}
+
+variable "default_sg_id" {
+  default = "sg-0e381eb84dad9dfd3"
+}
