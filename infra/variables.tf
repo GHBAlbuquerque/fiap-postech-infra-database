@@ -1,15 +1,3 @@
-variable "project_name" {
-  default = "fiap-postech-infra-database"
-}
-
-variable "mongodbatlas_public_key" {
-  default = ""
-}
-
-variable "mongodbatlas_private_key" {
-  default = ""
-}
-
 # Atlas Organization ID
 variable "atlas_org_id" {
   type        = string
@@ -55,4 +43,10 @@ variable "mongodb_version" {
 variable "ip_address" {
   type = string
   description = "IP address used to access Atlas cluster"
+}
+
+# AWS Region
+variable "aws_region" {
+  type = string
+  description = "AWS Region"
 }
