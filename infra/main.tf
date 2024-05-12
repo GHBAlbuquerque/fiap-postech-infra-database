@@ -4,6 +4,8 @@ resource "mongodbatlas_project" "atlas-project" {
   name   = var.atlas_project_name
 }
 
+
+
 # Create a Database User
 resource "mongodbatlas_database_user" "db-user" {
   username           = "user-1"
@@ -29,8 +31,28 @@ resource "mongodbatlas_project_ip_access_list" "ip" {
   ip_address = var.ip_address
 }
 
+resource "mongodbatlas_cluster" "atlas_cluster" {
+  project_id = mongodbatlas_project.atlas-project.id
+  name       = "${var.atlas_project_name}-${var.environment}-cluster"
+
+  mongo_db_major_version      = var.atlas_cluster_version
+  # Provider settings block
+  provider_name               = var.atlas_cluster_provider_name
+  backing_provider_name       = var.atlas_cluster_backing_provider
+  provider_region_name        = var.atlas_cluster_region
+  provider_instance_size_name = var.atlas_cluster_size_name
+
+  termination_protection_enabled = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
+
+
+}
+
 # Create an Atlas Advanced Cluster
-resource "mongodbatlas_advanced_cluster" "atlas-cluster" {
+/*resource "mongodbatlas_cluster" "atlas-cluster" {
   project_id             = mongodbatlas_project.atlas-project.id
   name                   = "${var.atlas_project_name}-${var.environment}-cluster"
   cluster_type           = "REPLICASET"
@@ -57,10 +79,12 @@ data "mongodbatlas_advanced_cluster" "atlas-cluster" {
   project_id = mongodbatlas_project.atlas-project.id
   name       = mongodbatlas_advanced_cluster.atlas-cluster.name
   depends_on = [mongodbatlas_privatelink_endpoint_service.atlaseplink]
-}
+}*/
 
 # Outputs to Display
-output "atlas_cluster_connection_string" { value = mongodbatlas_advanced_cluster.atlas-cluster.connection_strings.0.standard_srv }
+output "atlas_cluster_connection_string" {
+  value = mongodbatlas_cluster.atlas_cluster.connection_strings.0.standard_srv
+}
 output "ip_access_list" { value = mongodbatlas_project_ip_access_list.ip.ip_address }
 output "project_name" { value = mongodbatlas_project.atlas-project.name }
 output "username" { value = mongodbatlas_database_user.db-user.username }
