@@ -25,6 +25,10 @@ Integrantes:
 - Kelvin Vieira (RM352728)
 - Wellington Vieira (RM352970)
 
+### 🧳 Diagrama de Classes
+
+![img.png](misc/class_diagram.png)
+
 ### 📍 DDD
 
 Estudos de Domain Driven Design (DDD) como Domain StoryTelling, EventStorming, Linguagem Ubíqua foram feitos na ferramenta MIRO pelo grupo.
@@ -43,7 +47,8 @@ Tecnologias utilizadas:
 
 * Cloud AWS
 * Terraform
-* Python
+* MongoDB
+* Nuvem Atlas
 
 
 ## 🎬 Como executar este projeto?
