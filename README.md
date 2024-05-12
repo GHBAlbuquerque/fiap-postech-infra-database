@@ -66,6 +66,7 @@ Faça o download ou clone este projeto e abra em uma IDE (preferencialmente Inte
 É preciso ter:
 
     - Uma conta cadastrada na Cloud AWS
+    - Uma conta cadastrada na nuvem Atlas
 
 ### 💿 Getting started - Rodando em cluster kubernetes + Load balancer + Api Gateway na AWS
 
