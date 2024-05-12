@@ -1,7 +1,7 @@
 # 🚀 FIAP : Challenge Pós-Tech Software Architecture
 ## 🍔 Projeto Fast Food | Banco de Dados (MongoDB)
 
-Projeto realizado para a Fase 3 da Pós-Graduação de Arquitetura de Sistemas da FIAP. Respositório para banco de dados MongoDB criado na nuvem Atlas.
+Projeto realizado para a Fase 3 da Pós-Graduação de Arquitetura de Sistemas da FIAP. Repositório para banco de dados MongoDB criado na nuvem Atlas.
 
 **🚨 OBSERVAÇÃO 🚨**
 
