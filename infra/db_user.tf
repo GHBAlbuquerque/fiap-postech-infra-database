@@ -19,6 +19,6 @@ resource "mongodbatlas_database_user" "application" {
 
   roles {
     role_name     = "readWrite"
-    database_name = var.mongo_database_name
+    database_name = var.mongo_cluster_name
   }
 }

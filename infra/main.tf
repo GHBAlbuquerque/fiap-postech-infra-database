@@ -13,7 +13,7 @@ resource "mongodbatlas_project_ip_access_list" "ip" {
 
 resource "mongodbatlas_cluster" "atlas_cluster" {
   project_id = mongodbatlas_project.atlas_project.id
-  name       = var.mongo_database_name
+  name       = var.mongo_cluster_name
 
   mongo_db_major_version      = var.mongodb_version
   # Provider settings block

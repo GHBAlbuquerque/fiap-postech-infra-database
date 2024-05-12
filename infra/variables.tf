@@ -101,10 +101,10 @@ variable "mongo_database_app_password" {
 
 # database
 
-variable "mongo_database_name" {
+variable "mongo_cluster_name" {
   description = "Mongo database name"
   type        = string
-  default     = "db-fiap-fastfood"
+  default     = "cluster_fiap"
 }
 
 
